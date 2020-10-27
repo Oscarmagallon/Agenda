@@ -1,3 +1,34 @@
+SubProceso rellenar (mDatos,telefono,nombre,i,filas)
+	
+	Para i=0 hasta filas-1 con paso 1 Hacer
+		
+		Si mDatos[i,0] == "" Entonces
+			Escribir "Dime el nombre";
+			leer nombre;
+			mDatos[i,0]=nombre;
+			Escribir "Dime el telefono";
+			leer telefono;
+			mDatos[i,1] = telefono; 
+			i=filas;
+		FinSi
+		
+	FinPara
+FinSubProceso
+
+SubProceso buscar (mDatos,filas)
+	Definir i Como Entero;
+	Definir nombusc Como Caracter;
+	Escribir "Dime el nombre a buscar";
+	leer nombusc;
+	Para i=0 Hasta filas-1 Con Paso 1 Hacer
+		Si (mDatos[i,0]==nombusc o mDatos[i,1]==nombusc ) Entonces
+			Escribir "El nombre es: ",mDatos[i,0], " El telefono es: ", mDatos[i,1];
+		FinSi
+		
+	FinPara
+FinSubProceso
+
+
 Algoritmo vAgenda
 	Definir num,i,tam,j,filas,columnas como Entero;
 	Definir nombre,nombusc,mDatos,telefono,nomcomp,borrado,editar,nomedit,telefonoedi,cont como caracter;
@@ -20,30 +51,11 @@ Algoritmo vAgenda
 		leer num;
 		Segun num Hacer
 			1:
-				Para i=0 hasta filas-1 con paso 1 Hacer
-					
-					Si mDatos[i,0] == "" Entonces
-						Escribir "Dime el nombre";
-						leer nombre;
-						mDatos[i,0]=nombre;
-						Escribir "Dime el telefono";
-						leer telefono;
-						mDatos[i,1] = telefono; 
-						i=filas;
-					FinSi
-					
-				FinPara
+				rellenar(mDatos,telefono,nombre,i,filas);
 				
 				
 			2:
-				Escribir "Dime el nombre a buscar";
-				leer nombusc;
-				Para i=0 Hasta filas-1 Con Paso 1 Hacer
-					Si (mDatos[i,0]==nombusc o mDatos[i,1]==nombusc ) Entonces
-						Escribir "El nombre es: ",mDatos[i,0], " El apellido es: ", mDatos[i,1];
-					FinSi
-						
-				FinPara
+				buscar(mDatos,filas);
 				
 				
 			3:
