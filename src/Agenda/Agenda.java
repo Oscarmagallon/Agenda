@@ -13,26 +13,46 @@ public class Agenda {
 		}
 	}
 
-	public static void editarContacto(String mDatos[][]) {
-		Scanner leer = new Scanner(System.in);
-		String edit = "", editnom = "", editel = "";
-		System.out.println("¿Que contacto quieres editar?");
-		edit = leer.next();
-		for (int i = 0; i < mDatos.length; i++) {
-			if (mDatos[i][0].equalsIgnoreCase(edit) || mDatos[i][1].equalsIgnoreCase(edit)) {
-				System.out.println("¿Que nombre quires ponerle?");
-				editnom = leer.next();
-				mDatos[i][0] = editnom;
-				System.out.println("Cual es su telefono");
-				editel = leer.next();
-				mDatos[i][1] = editel;
-				break;
+	// Si no lo encuentro devuelve -1
+	public static int buscarContacto(String mDatos[][], String busqueda) {
 
-			} else {
-				System.out.println("El contacto no está");
-				break;
+		for (int i = 0; i < mDatos.length; i++) {
+			if (mDatos[i][0].equalsIgnoreCase(busqueda) || mDatos[i][1].equalsIgnoreCase(busqueda)) {
+				return i;
 			}
 		}
+
+		return -1;
+	}
+
+	public static void editarContacto(String mDatos[][]) {
+		Scanner leer = new Scanner(System.in);
+		String edit = "", editnom = "", editel = "", selector = "";
+		int pos;
+		// Dime contacto
+		System.out.println("Que Nombre o telefono quieres cambiar");
+		edit = leer.next();
+		pos = buscarContacto(mDatos, edit);
+
+		if (pos == -1) {
+			System.out.println("El contacto no esta");
+		} else {
+			System.out.println("Que quieres editar su nombre o telefono");
+			edit = leer.next();
+			if (edit.equalsIgnoreCase("Telefono")) {
+				System.out.println("Que numero de telefono quieres ponerle");
+				editel = leer.next();
+				mDatos[pos][1] = editel;
+			}
+			if (edit.equalsIgnoreCase("nombre")) {
+				System.out.println("Que nombre quieres ponerle");
+				editnom = leer.next();
+				mDatos[pos][0] = editnom;
+
+			}
+
+		}
+
 	}
 
 	public static void borrar(String mDatos[][]) {
@@ -86,7 +106,7 @@ public class Agenda {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int filas = 0, columnas = 2, num = 0;
+		int filas = 0, columnas = 2, num = 0, busqueda = 0;
 		String mDatos[][], nombusc = "";
 		Scanner leer = new Scanner(System.in);
 		System.out.println("Dime el tamano de las filas");
@@ -115,8 +135,10 @@ public class Agenda {
 				break;
 			case 4:
 				editarContacto(mDatos);
+				break;
 			case 5:
 				mostrarTodo(mDatos);
+				break;
 
 			}
 
