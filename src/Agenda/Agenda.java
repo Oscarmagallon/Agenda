@@ -7,7 +7,7 @@ public class Agenda {
 	public static void mostrarTodo(String mDatos[][]) {
 		for (int i = 0; i < mDatos.length; i++) {
 			if (!mDatos[i][0].equalsIgnoreCase("") || !mDatos[i][1].equalsIgnoreCase("")) {
-				System.out.println("El nombre del contacto " + i + 1 + " es " + mDatos[i][0] + " y su telefono es "
+				System.out.println("El nombre del contacto es " + mDatos[i][0] + " y su telefono es "
 						+ mDatos[i][1]);
 			}
 		}
