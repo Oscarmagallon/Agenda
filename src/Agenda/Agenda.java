@@ -65,6 +65,8 @@ public class Agenda {
 				mDatos[i][0] = "";
 				mDatos[i][1] = "";
 
+			}else {
+				System.out.println("El contacto no esta");
 			}
 		}
 	}
